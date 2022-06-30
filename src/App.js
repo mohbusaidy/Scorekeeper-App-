@@ -1,6 +1,9 @@
 import Player from "./components/Player/Player.js";
 import Button from "./components/Button/Button.js";
 import { initialPreviousGames } from "./historyDB.js";
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation /Navigation.js";
+import History from "./components/History/History.js";
 
 const players = [
   {
@@ -20,22 +23,46 @@ const players = [
   },
 ];
 
-function App() {
+export default function App() {
   return (
     <>
       <heading>
         <h1>Game</h1>
       </heading>
       <main>
-        {players.map((player) => (
-          <Player key={player.id} name={player.name} score={player.score} />
-        ))}
-        <Button background={"red"}>End game</Button>
-        <h2>Previous Games</h2>
-        {initialPreviousGames.map((game) => {
-          return <History key={game.id} game={game} />;
-        })}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <h2>Game</h2>
+                {players.map((player) => {
+                  return (
+                    <Player
+                      key={player.id}
+                      name={player.name}
+                      score={player.score}
+                    />
+                  );
+                })}
+                <Button background={"lightseagreen"}>end game</Button>
+              </>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <>
+                <h2>Previous Games</h2>
+                {initialPreviousGames.map((game) => {
+                  return <History key={game.id} game={game} />;
+                })}
+              </>
+            }
+          />
+        </Routes>
       </main>
+      <Navigation />
     </>
   );
 }
