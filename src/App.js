@@ -1,9 +1,9 @@
-import Player from "./components/Player/Player.js";
-import Button from "./components/Button/Button.js";
 import { initialPreviousGames } from "./historyDB.js";
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/Navigation /Navigation.js";
 import History from "./components/History/History.js";
+import HomePage from "./Pages/HomePages.js";
+import styled from "styled-components";
 
 const players = [
   {
@@ -26,29 +26,12 @@ const players = [
 export default function App() {
   return (
     <>
-      <heading>
-        <h1>Game</h1>
-      </heading>
-      <main>
+      <header>
+        <h1>Scorekeeper</h1>
+      </header>
+      <Main>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <h2>Game</h2>
-                {players.map((player) => {
-                  return (
-                    <Player
-                      key={player.id}
-                      name={player.name}
-                      score={player.score}
-                    />
-                  );
-                })}
-                <Button background={"lightseagreen"}>end game</Button>
-              </>
-            }
-          />
+          <Route path="/" element={<HomePage players={players} />} />
           <Route
             path="/history"
             element={
@@ -61,8 +44,13 @@ export default function App() {
             }
           />
         </Routes>
-      </main>
+      </Main>
       <Navigation />
     </>
   );
 }
+
+const Main = styled.main`
+  display: grid;
+  gap: 10px;
+`;
