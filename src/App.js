@@ -31,9 +31,11 @@ function App() {
           <Player key={player.id} name={player.name} score={player.score} />
         ))}
         <Button background={"red"}>End game</Button>
+        <h2>Previous Games</h2>
+        {initialPreviousGames.map((game) => {
+          return <History key={game.id} game={game} />;
+        })}
       </main>
     </>
   );
 }
-
-export default App;
