@@ -2,6 +2,8 @@ import Player from "./components/Player/Player.js";
 import Button from "./components/Button/Button.js";
 import { initialPreviousGames } from "./historyDB.js";
 import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation /Navigation.js";
+import History from "./components/History/History.js";
 
 const players = [
   {
@@ -21,7 +23,7 @@ const players = [
   },
 ];
 
-function App() {
+export default function App() {
   return (
     <>
       <heading>
@@ -60,6 +62,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Navigation />
     </>
   );
 }
